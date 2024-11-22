@@ -38,7 +38,7 @@ def get_kafka_message(rate_id, date, cargo_type, rate, user_id, event_type):
     message = {
         "user_id": user_id,
         "event_type": event_type,
-        "event_time": datetime.now().strftime('%Y-%m-%d %H:%M:%S"'),
+        "event_time": datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
         "rate_id": rate_id,
         "date": date.strftime('%Y-%m-%d'),
         "cargo_type": cargo_type,
