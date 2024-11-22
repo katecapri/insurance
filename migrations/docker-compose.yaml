@@ -1,0 +1,15 @@
+services:
+
+  insurance-migrations:
+    image: "${APP_MIGRATIONS_IMAGE_NAME}"
+    environment:
+      - DB_USERNAME=${APP_DB_USERNAME}
+      - DB_PASSWORD=${APP_DB_PASSWORD}
+      - DB_DATABASE=${APP_DB_NAME}
+      - DB_PORT=${APP_DB_PORT}
+      - DB_HOST=${APP_DB_HOST}
+
+networks:
+  default:
+    name: ${APP_NETWORK}
+    external: true

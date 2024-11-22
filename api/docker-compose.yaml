@@ -1,0 +1,25 @@
+services:
+
+  insurance-api:
+    image: "${APP_API_IMAGE_NAME}"
+    environment:
+      - DB_USERNAME=${APP_DB_USERNAME}
+      - DB_PASSWORD=${APP_DB_PASSWORD}
+      - DB_DATABASE=${APP_DB_NAME}
+      - DB_PORT=${APP_DB_PORT}
+      - DB_HOST=${APP_DB_HOST}
+      - KAFKA_PORT=${APP_KAFKA_PORT}
+      - KAFKA_HOST=${APP_KAFKA_HOST}
+      - INPUT_DATA_JSON_PATH=${APP_INPUT_DATA_JSON_PATH}
+      - API_JWT_SECRET=${APP_API_JWT_SECRET}
+      - API_JWT_ALGORITHM=${APP_API_JWT_ALGORITHM}
+      - API_JWT_ACCESS_TOKEN_EXPIRE_MINUTES=${APP_API_JWT_ACCESS_TOKEN_EXPIRE_MINUTES}
+    ports:
+      - "8000:8000"
+    volumes:
+    - ./app/static:/static
+
+networks:
+  default:
+    name: ${APP_NETWORK}
+    external: true

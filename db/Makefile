@@ -1,0 +1,23 @@
+INSURANCE_DB_IMAGE_NAME ?= insurance-db
+INSURANCE_DB_NAME ?=  insurance
+INSURANCE_DB_USERNAME ?= insurance
+INSURANCE_DB_PASSWORD ?= insurance
+INSURANCE_DB_PORT ?= 5432
+INSURANCE_DB_HOST ?= insurance-db
+INSURANCE_NETWORK ?= "insurance"
+
+.PHONY: build
+build:
+	docker build -t $(INSURANCE_DB_IMAGE_NAME) -f Dockerfile .
+
+.PHONY: run
+run:
+	- docker network create $(INSURANCE_NETWORK)
+	APP_NETWORK=$(INSURANCE_NETWORK) \
+	APP_DB_IMAGE_NAME=$(INSURANCE_DB_IMAGE_NAME) \
+    APP_DB_USERNAME=$(INSURANCE_DB_USERNAME) \
+    APP_DB_PASSWORD=$(INSURANCE_DB_PASSWORD) \
+    APP_DB_NAME=$(INSURANCE_DB_NAME) \
+    APP_DB_PORT=$(INSURANCE_DB_PORT) \
+    APP_DB_HOST=$(INSURANCE_DB_HOST) \
+	docker-compose -f docker-compose.yaml up -d

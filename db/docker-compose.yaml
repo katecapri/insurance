@@ -1,0 +1,15 @@
+services:
+
+  insurance-db:
+    image: "${APP_DB_IMAGE_NAME}"
+    ports:
+      - "127.0.0.1:5432:5432"
+    environment:
+      - POSTGRES_USER=${APP_DB_USERNAME}
+      - POSTGRES_PASSWORD=${APP_DB_PASSWORD}
+      - POSTGRES_DB=${APP_DB_NAME}
+
+networks:
+  default:
+    name: ${APP_NETWORK}
+    external: true
